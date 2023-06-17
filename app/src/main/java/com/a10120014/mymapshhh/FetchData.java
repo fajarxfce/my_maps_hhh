@@ -52,7 +52,7 @@ public class FetchData extends AsyncTask<Object, String, String>{
             JSONArray jsonArray = jsonObject.getJSONArray("local_results");
 
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 //                JSONObject getLocation = jsonObject1.getJSONObject("geometry").getJSONObject("location");
 //

@@ -46,9 +46,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(binding.getRoot());
 
         atm = findViewById(R.id.atm);
-        hosp = findViewById(R.id.hosp);
-        bank = findViewById(R.id.bank);
-        rest = findViewById(R.id.rest);
         editText = findViewById(R.id.TF_location);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.getApplicationContext());
@@ -68,19 +65,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                stringBuilder.append("&type=atm");
 //                stringBuilder.append("&sensor=true");
 //                stringBuilder.append("&key=" + getResources().getString(R.string.google_map_key));
-                StringBuilder stringBuilder = new StringBuilder("https://serpapi.com/search.json?engine=google_maps&q=bank&ll=@-6.8895710,107.6211944,15.1z&type=search" +
+                StringBuilder stringBuilder = new StringBuilder("https://serpapi.com/search.json?" +
+                        "engine=google_maps&" +
+                        "q=restaurant&" +
+                        "ll=@"+ lat +","+ lng +",15.1z&" +
+                        "type=search" +
                         "&api_key=8f8b8aaf636c392c041dd82261bd78a6fecbb8649602254161d103622b65b9c0");
 
                 String url = stringBuilder.toString();
-                Object dataFetch[] = new Object[2];
+                Object[] dataFetch = new Object[2];
                 dataFetch[0]=mMap;
                 dataFetch[1]=url;
-
+                editText.setText(stringBuilder);
                 FetchData fetchData = new FetchData();
                 fetchData.execute(dataFetch);
                 Toast.makeText(MapsActivity.this, fetchData.toString(), Toast.LENGTH_LONG).show();
-                editText.setText(dataFetch.toString());
-
 
             }
         });
@@ -143,7 +142,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     LatLng latLng = new LatLng(lat,lng);
                     mMap.addMarker(new MarkerOptions().position(latLng).title("Current Location"));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+//                    editText.setText(String.valueOf(lat));
 
                 }
             }
