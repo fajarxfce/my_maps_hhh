@@ -62,12 +62,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         atm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-                stringBuilder.append("location=" + lat+","+lng);
-                stringBuilder.append("&radius=1000");
-                stringBuilder.append("&type=atm");
-                stringBuilder.append("&sensor=true");
-                stringBuilder.append("&key=" + getResources().getString(R.string.google_map_key));
+//                StringBuilder stringBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+//                stringBuilder.append("location=" + lat+","+lng);
+//                stringBuilder.append("&radius=1000");
+//                stringBuilder.append("&type=atm");
+//                stringBuilder.append("&sensor=true");
+//                stringBuilder.append("&key=" + getResources().getString(R.string.google_map_key));
+                StringBuilder stringBuilder = new StringBuilder("https://serpapi.com/search.json?engine=google_maps&q=bank&ll=@-6.8895710,107.6211944,15.1z&type=search" +
+                        "&api_key=8f8b8aaf636c392c041dd82261bd78a6fecbb8649602254161d103622b65b9c0");
 
                 String url = stringBuilder.toString();
                 Object dataFetch[] = new Object[2];

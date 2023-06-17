@@ -49,18 +49,24 @@ public class FetchData extends AsyncTask<Object, String, String>{
     protected void onPostExecute(String s) {
         try {
             JSONObject jsonObject = new JSONObject(s);
-            JSONArray jsonArray = jsonObject.getJSONArray("results");
+            JSONArray jsonArray = jsonObject.getJSONArray("local_results");
 
 
-            for (int i = 0; i < jsonArray.length(); i++) {
+            for (int i = 0; i < 5; i++) {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                JSONObject getLocation = jsonObject1.getJSONObject("geometry").getJSONObject("location");
+//                JSONObject getLocation = jsonObject1.getJSONObject("geometry").getJSONObject("location");
+//
+//                String lat = getLocation.getString("lat");
+//                String lng = getLocation.getString("lng");
+//
+//                JSONObject getName = jsonArray.getJSONObject(i);
+//                String name = getName.getString("name");
 
-                String lat = getLocation.getString("lat");
-                String lng = getLocation.getString("lng");
+                JSONObject getLocation = jsonObject1.getJSONObject("gps_coordinates");
+                String name = jsonObject1.getString("title");
+                String lat = getLocation.getString("latitude");
+                String lng = getLocation.getString("longitude");
 
-                JSONObject getName = jsonArray.getJSONObject(i);
-                String name = getName.getString("name");
 
                 LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
                 MarkerOptions markerOptions = new MarkerOptions();
