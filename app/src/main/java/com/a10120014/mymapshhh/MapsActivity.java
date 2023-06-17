@@ -77,6 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dataFetch[0]=mMap;
                 dataFetch[1]=url;
                 editText.setText(stringBuilder);
+
                 FetchData fetchData = new FetchData();
                 fetchData.execute(dataFetch);
                 Toast.makeText(MapsActivity.this, fetchData.toString(), Toast.LENGTH_LONG).show();
